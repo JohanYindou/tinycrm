@@ -23,17 +23,18 @@ class PaymentController extends AbstractController
         $apiKey = $this->getParameter('STRIPE_API_KEY_SECRET');
         $offre = $offres->findOneBy(['id' => 1]);
         $clientEmail = $clients->findOneBy(['id' => 1])->getEmail();
-        $stripeService->makePayment(
+        $link = $stripeService->makePayment(
             $apiKey,
             $offre->getMontant(),
             $offre->getTitre(),
             $clientEmail
         );
+        return $this->redirect($link);
 
 
-        return $this->render('payment/index.html.twig', [
-            'controller_name' => 'PaymentController',
-        ]);
+        // return $this->render('payment/index.html.twig', [
+        //     'controller_name' => 'PaymentController',
+        // ]);
     }
 
     #[Route('/success', name: 'payment_success')]
