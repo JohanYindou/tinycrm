@@ -19,7 +19,7 @@ class PaymentType extends AbstractType
                 'class' => Client::class,
                 'choice_label' => 'nomComplet',
             ])
-            ->add('client', EntityType::class,[
+            ->add('offre', EntityType::class,[
                 'class'=>Offre::class,
                 'choice_label'=>'titre'
             ])
