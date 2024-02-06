@@ -16,7 +16,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $faker = \Faker\Factory::create('fr_FR');
+        $faker = Factory::create('fr_FR');
 
         // Administateur
         $admin = new User();
@@ -35,11 +35,13 @@ class AppFixtures extends Fixture
         $clients = [];
 
         for ($i = 0; $i < 20; $i++) {
+            $nom = $faker->lastName();
+            $prenom = $faker->firstName();
             $client = new Client();
-            $client->setNom($faker->lastName())
-                ->setPrenom($faker->firstName())
+            $client->setNom($nom)
+                ->setPrenom($prenom)
                 ->setTelephone($faker->phoneNumber())
-                ->setEmail($faker->email())
+                ->setEmail($prenom.'.'.$nom.'@'.$faker->freeEmailDomain())
                 ->setAdresse($faker->streetAddress())
                 ->setCp($faker->postcode())
                 ->setVille($faker->city())
