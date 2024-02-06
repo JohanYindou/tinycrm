@@ -118,10 +118,12 @@ class AppFixtures extends Fixture
                     array_push($clientsActives, $client);
                 }
             }
+            $offre = $faker->randomElement($offresArray);
             $transaction = new Transaction();
             $transaction->setClient($faker->randomElement($clientsActives))
-                ->setMontant($faker->randomElement([1000, 2000, 3000, 5000]))
-                ->setStatut('Payé')
+                ->addOffre($offre)
+                ->setMontant($offre->getMontant())
+                ->setStatut($faker->randomElement(['Payé', 'En attente', 'Non payé']))
                 ->setDate($date)
                 ->setCreatedAt($date)
                 ->setUpdatedAt($date);
