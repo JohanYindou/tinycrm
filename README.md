@@ -39,6 +39,47 @@ TinyCRM est conçu pour les agences SMMA, qu'elles soient dirigées par des solo
    - Publication et gestion d'articles web pour le marketing de contenu.
    - Liaison des articles aux clients et aux offres de l'agence.
 
+## Installation du projet
+
+Pour installer TinyCRM, vous avez besoin de Composer et Symfony.
+Après avoir cloné le dépôt sur votre machine locale, ouvrez un terminal et tapez les lignes de code suivantes :
+
+```bash
+composer install
+```
+
+Cela permet d'installer les dépendances de l'application.
+
+Après avoir installé les dépendances, il est nécessaire d'initialiser la base de données et le mailer de l'application.
+Vous pouvez tout d'abord crée un fichier .env.local qui contient les informations de connexion a la base de données et le mailer de l'application.
+Modifiez le fichier .env en commentant la variable DATABASE_URL.
+Si vous souhaitez changer SQLite en une autre base de données, libre à vous.
+
+Vous pouvez créer la base de données en utilisant la commande suivante :
+
+```bash
+symfony console doctrine:database:create
+```
+
+Si il manque le fichier migration créer le manuellement à la racine du projet.
+Ensuite, pour créer les migrations :
+
+```bash
+symfony console make:migration
+```
+
+Pour appliquer les migrations à la base de données :
+
+```bash
+symfony console doctrine:migrations:migrate
+```
+
+Enfin, il faut charger les fixtures générées par Faker dans la base de données :
+
+```bash
+symfony console doctrine:fixtures:load
+```
+
 ## Détail des Entités
 
 ### Client
